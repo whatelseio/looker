@@ -4,7 +4,7 @@ view: activity_logs {
 
   dimension: id {
     primary_key: yes
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.Id ;;
   }
@@ -34,8 +34,17 @@ view: activity_logs {
     sql: ${TABLE}.BoolTwo ;;
   }
 
-  dimension: call_end_time {
-    type: string
+  dimension_group: call_end_time {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.CallEndTime ;;
   }
 
@@ -44,8 +53,17 @@ view: activity_logs {
     sql: ${TABLE}.CallId ;;
   }
 
-  dimension: call_start_time {
-    type: string
+  dimension_group: call_start_time {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.CallStartTime ;;
   }
 
@@ -64,8 +82,17 @@ view: activity_logs {
     sql: ${TABLE}.ConversationId ;;
   }
 
-  dimension: created_at {
-    type: string
+  dimension_group: created_at {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.CreatedAt ;;
   }
 
@@ -144,17 +171,7 @@ view: activity_logs {
     sql: ${TABLE}.TranscriptionSource ;;
   }
 
-  dimension: updated_at {
-    type: string
-    sql: ${TABLE}.UpdatedAt ;;
-  }
-
-  dimension: user_id {
-    type: string
-    sql: ${TABLE}.UserId ;;
-  }
-
-  dimension_group: version {
+  dimension_group: updated_at {
     type: time
     timeframes: [
       raw,
@@ -165,6 +182,16 @@ view: activity_logs {
       quarter,
       year
     ]
+    sql: ${TABLE}.UpdatedAt ;;
+  }
+
+  dimension: user_id {
+    type: string
+    sql: ${TABLE}.UserId ;;
+  }
+
+  dimension: version {
+    type: date_time
     sql: ${TABLE}.Version ;;
   }
 
