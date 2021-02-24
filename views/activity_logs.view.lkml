@@ -172,4 +172,9 @@ view: activity_logs {
     type: count
     drill_fields: [id, contact_name]
   }
+
+  measure: user_count {
+    type: count_distinct
+    sql:  ${user_id} ;;
+  }
 }
