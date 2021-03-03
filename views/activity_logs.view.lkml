@@ -204,4 +204,10 @@ view: activity_logs {
     type: count_distinct
     sql:  ${user_id} ;;
   }
+
+  measure: activity_type_count {
+    type: count_distinct
+    sql: ${activity_type_id} ;;
+  }
+
 }

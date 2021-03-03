@@ -10,4 +10,16 @@ datagroup: metrics_default_datagroup {
 
 persist_with: metrics_default_datagroup
 
-explore: activity_logs {}
+explore: activity_logs {
+  label: "Activity Log"
+  # group_label: "Activity Log"
+  view_label: "Activity Log"
+
+  join: activity_calls {
+    type: left_outer
+    sql_on: ${activity_logs.user_id} = ${activity_calls.user_id}  ;;
+    relationship: many_to_many
+    }
+}
+
+explore: activity_calls {}
