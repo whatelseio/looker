@@ -32,14 +32,14 @@ view: activity_calls {
     sql: ${TABLE}.CreatedAt ;;
   }
 
-  dimension: deleted {
+  dimension: is_deleted {
     type: yesno
-    sql: ${TABLE}.Deleted ;;
+    sql: ${TABLE}.Deleted = 'true';;
   }
 
   dimension: is_edited {
     type: yesno
-    sql: ${TABLE}.IsEdited ;;
+    sql: ${TABLE}.IsEdited = 'true';;
   }
 
   dimension: provider_id {
@@ -82,7 +82,7 @@ view: activity_calls {
     drill_fields: [id]
   }
 
-  measure:  provider_count {
+  measure: provider_count {
     type: count_distinct
     sql: ${provider_id} ;;
   }

@@ -96,34 +96,34 @@ view: activity_logs {
     sql: ${TABLE}.CreatedAt ;;
   }
 
-  dimension: deleted {
-    type: string
-    sql: ${TABLE}.Deleted ;;
+  dimension: is_deleted {
+    type: yesno
+    sql: ${TABLE}.Deleted = 'true' ;;
   }
 
   dimension: is_active {
-    type: string
-    sql: ${TABLE}.IsActive ;;
+    type: yesno
+    sql: ${TABLE}.IsActive = 'true' ;;
   }
 
   dimension: is_contact {
-    type: string
-    sql: ${TABLE}.IsContact ;;
+    type: yesno
+    sql: ${TABLE}.IsContact = 'true' ;;
   }
 
   dimension: is_current_call {
-    type: string
-    sql: ${TABLE}.IsCurrentCall ;;
+    type: yesno
+    sql: ${TABLE}.IsCurrentCall = 'true' ;;
   }
 
   dimension: is_identified {
-    type: string
-    sql: ${TABLE}.IsIdentified ;;
+    type: yesno
+    sql: ${TABLE}.IsIdentified = 'true' ;;
   }
 
   dimension: is_incoming {
-    type: string
-    sql: ${TABLE}.IsIncoming ;;
+    type: yesno
+    sql: ${TABLE}.IsIncoming = 'true' ;;
   }
 
   dimension: notes {
