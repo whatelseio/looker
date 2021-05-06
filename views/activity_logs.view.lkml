@@ -195,6 +195,29 @@ view: activity_logs {
     sql: ${TABLE}.Version ;;
   }
 
+  dimension: artist_name {
+    type: string
+    sql:  case substring(${phone_number},1,1)
+            when '0' then 'Madonna'
+            when '1' then 'Enya'
+            when '2' then 'Sting'
+            when '3' then 'Yanni'
+            when '4' then 'Ronaldo'
+            when '5' then 'The Weekend'
+            when '6' then 'Jennifer Nettles'
+            when '7' then 'Popeye'
+            when '8' then 'Batman'
+            when '9' then 'The Hulk'
+            else 'Jack Benny'
+          end
+            ;;
+    link: {
+      label: "Google"
+      url: "http://www.google.com/search?q={{ value }}"
+      icon_url: "http://google.com/favicon.ico"
+    }
+  }
+
   measure: count {
     type: count
     drill_fields: [id, contact_name]
