@@ -4,7 +4,6 @@ view: activity_logs {
 
   dimension: id {
     primary_key: yes
-    hidden: no
     type: string
     sql: ${TABLE}.Id ;;
   }
@@ -34,17 +33,8 @@ view: activity_logs {
     sql: ${TABLE}.BoolTwo ;;
   }
 
-  dimension_group: call_end_time {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: call_end_time {
+    type: string
     sql: ${TABLE}.CallEndTime ;;
   }
 
@@ -53,17 +43,8 @@ view: activity_logs {
     sql: ${TABLE}.CallId ;;
   }
 
-  dimension_group: call_start_time {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: call_start_time {
+    type: string
     sql: ${TABLE}.CallStartTime ;;
   }
 
@@ -82,48 +63,39 @@ view: activity_logs {
     sql: ${TABLE}.ConversationId ;;
   }
 
-  dimension_group: created_at {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: created_at {
+    type: string
     sql: ${TABLE}.CreatedAt ;;
   }
 
-  dimension: is_deleted {
-    type: yesno
-    sql: ${TABLE}.Deleted = 'true' ;;
+  dimension: deleted {
+    type: string
+    sql: ${TABLE}.Deleted ;;
   }
 
   dimension: is_active {
-    type: yesno
-    sql: ${TABLE}.IsActive = 'true' ;;
+    type: string
+    sql: ${TABLE}.IsActive ;;
   }
 
   dimension: is_contact {
-    type: yesno
-    sql: ${TABLE}.IsContact = 'true' ;;
+    type: string
+    sql: ${TABLE}.IsContact ;;
   }
 
   dimension: is_current_call {
-    type: yesno
-    sql: ${TABLE}.IsCurrentCall = 'true' ;;
+    type: string
+    sql: ${TABLE}.IsCurrentCall ;;
   }
 
   dimension: is_identified {
-    type: yesno
-    sql: ${TABLE}.IsIdentified = 'true' ;;
+    type: string
+    sql: ${TABLE}.IsIdentified ;;
   }
 
   dimension: is_incoming {
-    type: yesno
-    sql: ${TABLE}.IsIncoming = 'true' ;;
+    type: string
+    sql: ${TABLE}.IsIncoming ;;
   }
 
   dimension: notes {
@@ -171,17 +143,8 @@ view: activity_logs {
     sql: ${TABLE}.TranscriptionSource ;;
   }
 
-  dimension_group: updated_at {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: updated_at {
+    type: string
     sql: ${TABLE}.UpdatedAt ;;
   }
 
@@ -195,42 +158,8 @@ view: activity_logs {
     sql: ${TABLE}.Version ;;
   }
 
-  dimension: artist_name {
-    type: string
-    sql:  case substring(${phone_number},1,1)
-            when '0' then 'Madonna'
-            when '1' then 'Enya'
-            when '2' then 'Sting'
-            when '3' then 'Yanni'
-            when '4' then 'Ronaldo'
-            when '5' then 'The Weekend'
-            when '6' then 'Jennifer Nettles'
-            when '7' then 'Popeye'
-            when '8' then 'Batman'
-            when '9' then 'The Hulk'
-            else 'Jack Benny'
-          end
-            ;;
-    link: {
-      label: "Google"
-      url: "http://www.google.com/search?q={{ value }}"
-      icon_url: "http://google.com/favicon.ico"
-    }
-  }
-
   measure: count {
     type: count
     drill_fields: [id, contact_name]
   }
-
-  measure: user_count {
-    type: count_distinct
-    sql:  ${user_id} ;;
-  }
-
-  measure: activity_type_count {
-    type: count_distinct
-    sql: ${activity_type_id} ;;
-  }
-
 }

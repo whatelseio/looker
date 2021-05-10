@@ -1,6 +1,6 @@
 view: activity_log_with_calls {
     derived_table: {
-      explore_source: activity_logs {
+      explore_source: activity_logs_extended {
         column: activity_type_id {}
         column: contact_name {}
         # column: is_active {}
